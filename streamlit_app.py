@@ -13,7 +13,7 @@ st.subheader("Visualizing the count of unique values per state using an interact
 
 
 # 2. Import Data
-df = pd.read_csv("D:/Users/Rod/Desktop/ebird_US-concat__1900_2025_1_12_barchart.txt", sep="\t")
+df = pd.read_csv("ebird_US-concat__1900_2025_1_12_barchart.txt", sep="\t")
 
 
 # 3. Sidebar Configuration for Customization
