@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 st.title("Number of Bird Species in Each State")
-st.subheader("Visualizing the number of birds per state using an interactive map")
+st.subheader("Visualizing the number of birds per state using eBird Barchart Data")
 
 
 # 2. Import Data
@@ -30,7 +30,7 @@ state_metrics = df.groupby("State")["Species"].nunique().reset_index()
 state_metrics.columns = ["state", "unique_count"]
 
 # 5. Displaying Metrics in Columns
-col1, col2 = st.columns([2, 1])
+col1, col2 = st.columns([3, 1])
 
 with col2:
     st.markdown("### 📊 Count of Birds In Each State")
