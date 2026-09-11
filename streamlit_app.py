@@ -4,12 +4,12 @@ import plotly.express as px
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="State Unique Values Dashboard",
+    page_title="Bird Species in Each State",
     layout="wide"
 )
 
-st.title("🇺🇸 State Unique Values Dashboard")
-st.subheader("Visualizing the count of unique values per state using an interactive map")
+st.title("Number of Bird Species in Each State")
+st.subheader("Visualizing the number of birds per state using an interactive map")
 
 
 # 2. Import Data
@@ -17,10 +17,10 @@ df = pd.read_csv("ebird_US-concat__1900_2025_1_12_barchart.txt", sep="\t")
 
 
 # 3. Sidebar Configuration for Customization
-st.sidebar.header("Map Configurations")
+st.sidebar.header("Map Configuration")
 color_theme = st.sidebar.selectbox(
     "Select Color Scale Theme",
-    options=["Viridis", "Cividis", "Blues", "Reds", "Greens", "Plasma"],
+    options=["Blues", "Reds", "Greens", "Viridis", "Cividis", "Plasma"],
     index=0
 )
 
@@ -33,14 +33,14 @@ state_metrics.columns = ["state", "unique_count"]
 col1, col2 = st.columns([2, 1])
 
 with col2:
-    st.markdown("### 📊 Calculated Metrics")
+    st.markdown("### 📊 Count of Birds In Each State")
     st.dataframe(
         state_metrics.sort_values(by="unique_count", ascending=False),
         column_config={
             "state": "State Abbreviation",
             "unique_count": st.column_config.NumberColumn(
-                "Unique Values Count",
-                format="%d 🔢"
+                "Number of Species",
+                format="%d"
             )
         },
         hide_index=True,
@@ -56,8 +56,8 @@ with col1:
         color="unique_count",        # The column mapping to the color scale
         color_continuous_scale=color_theme,
         scope="usa",                 # Constrain map view to USA
-        labels={"unique_count": "Unique Items"},
-        title="Unique Value Counts by US State"
+        labels={"unique_count": "Species"},
+        title="Bird Counts by US State"
     )
     
     # Update layout padding to make the map look seamless
